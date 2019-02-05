@@ -1,6 +1,6 @@
 public class Car extends Vehicle {
 
-   private boolean airConditioning;
+    private boolean airConditioning;
 
     public Car(String name, int tankVolume, double avarageCombustion, boolean airConditioning) {
         super(name, tankVolume, avarageCombustion);
@@ -15,15 +15,23 @@ public class Car extends Vehicle {
         this.airConditioning = airConditioning;
     }
 
-    void acOn(){
-        if(isAirConditioning()){
-            setAvarageCombustion(getAvarageCombustion()+0.8);
-        }
-    }
+//    ZŁO
+//    void acOn() {
+//        double combustionWithAC;
+//        if (isAirConditioning()) {
+//            combustionWithAC = getAvarageCombustion() + 0.8;
+//        }
+//    }
 
-    double range(){
-        acOn();
-        double r = getTankVolume()/getAvarageCombustion();
-        return r;
+    double range() {
+//        acOn();   nie może tu być wywolania tej metody
+        double r;
+        if (isAirConditioning()) {
+            r = getTankVolume() / (getAvarageCombustion()+0.8);
+            return r;
+        } else {
+            r = getTankVolume() / getAvarageCombustion();
+            return r;
+        }
     }
 }

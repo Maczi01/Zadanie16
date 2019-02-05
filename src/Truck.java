@@ -1,4 +1,4 @@
-public class Truck extends Car{
+public class Truck extends Car {
 
     private int loadWeight;
 
@@ -15,20 +15,23 @@ public class Truck extends Car{
         this.loadWeight = loadWeight;
     }
 
-    void acOn(){
-        if(isAirConditioning()){
-            setAvarageCombustion(getAvarageCombustion()+1.6);
-        }
-    }
-    void combustionWithLoad(){
-        int count = getLoadWeight()/100;
-        setAvarageCombustion(getAvarageCombustion()*count*0.5);
+    double combustionWithLoad() {
+        int count;
+        double withLoad;
+        count = getLoadWeight() / 100;
+        withLoad = getAvarageCombustion()+ (getAvarageCombustion()*count*0.5);
+        return withLoad;
     }
 
-    double range(){
-        acOn();
-        combustionWithLoad();
-        double r = getTankVolume()/getAvarageCombustion();
-        return r;
+
+    double range() {
+        double r;
+        if (isAirConditioning()) {
+            r = getTankVolume() / (getAvarageCombustion() + 1.6 + combustionWithLoad());
+            return r;
+        } else {
+            r = getTankVolume() / (getAvarageCombustion()+combustionWithLoad());
+            return r;
+        }
     }
 }
