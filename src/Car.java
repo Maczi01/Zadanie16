@@ -1,3 +1,6 @@
+import java.text.NumberFormat;
+
+
 public class Car extends Vehicle {
 
     private boolean airConditioning;
@@ -15,23 +18,22 @@ public class Car extends Vehicle {
         this.airConditioning = airConditioning;
     }
 
-//    ZŁO
-//    void acOn() {
-//        double combustionWithAC;
-//        if (isAirConditioning()) {
-//            combustionWithAC = getAvarageCombustion() + 0.8;
-//        }
-//    }
-
     double range() {
-//        acOn();   nie może tu być wywolania tej metody
         double r;
         if (isAirConditioning()) {
-            r = getTankVolume() / (getAvarageCombustion()+0.8);
+            r = (getTankVolume() / (getAvarageCombustion()+0.8))*100;
             return r;
         } else {
-            r = getTankVolume() / getAvarageCombustion();
+            r = (getTankVolume() / getAvarageCombustion())*100;
             return r;
         }
+    }
+
+    void showInfo(){
+        System.out.print(getName() + " ma bak o pojemnosci ");
+        System.out.print(getTankVolume() + " i spalanie okolo ");
+        System.out.print(getAvarageCombustion());
+        System.out.print(". Zasieg pojazdu " + getName() + " to "+Math.round(range()));
+
     }
 }

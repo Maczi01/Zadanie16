@@ -27,11 +27,17 @@ public class Truck extends Car {
     double range() {
         double r;
         if (isAirConditioning()) {
-            r = getTankVolume() / (getAvarageCombustion() + 1.6 + combustionWithLoad());
+            r = (getTankVolume() / (getAvarageCombustion() + 1.6 + combustionWithLoad()))*100;
             return r;
         } else {
-            r = getTankVolume() / (getAvarageCombustion()+combustionWithLoad());
+            r = (getTankVolume() / (getAvarageCombustion()+combustionWithLoad()))*100;
             return r;
         }
+    }
+
+    @Override
+    void showInfo() {
+        super.showInfo();
+        System.out.print(" Maksymalna ladownosc pojazdu " + getName() + " to " + loadWeight);
     }
 }
